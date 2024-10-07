@@ -7,11 +7,11 @@ export default {
       colors: {
         "background": "#121214",
         "elements": "#202024",
-        "text": "#C4C4CC",
-        "title": "#E1E1E6",
+        "text": "#ababab",
+        "title": "#C4C4CC",
         "white": "#FFFFFF",
-        "principal": "#dab1f7",
-        "light": "#d1a3f4",
+        "primary": "#8047F8",
+        "secondary": "#4B2995",
       },
       fontFamily: {
         sans: [
