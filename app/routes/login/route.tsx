@@ -1,6 +1,6 @@
 import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import { Link, useNavigate } from "@remix-run/react";
-import Input from "../../components/UI/Input";
+import * as Input from "../../components/UI/Input";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -8,10 +8,10 @@ export default function Login() {
   const successLogin = (credentialResponse: CredentialResponse) => {
     console.log(credentialResponse);
     // chama API enviando o token
-    // if success -> redirect /chat
+    // if 200
     return navigate("/chat")
 
-    // if error -> Throw error
+    // if 4XX 0r 5XX -> Throw error
   }
 
   const errorLogin = () => {
@@ -29,28 +29,41 @@ export default function Login() {
           <span className="text-primary">.</span>
         </h1>
 
-        <Input
-          id="user"
-          label="E-mail/username"
-          placeholder="Seu e-mail ou usuário..."
-          required
-        />
-
-        <Input
-          id="password"
-          type="password"
-          label="Senha"
-          placeholder="Sua senha..."
-          required
-        />
-
-        <span
-          className="self-end"
+        <label
+          htmlFor="user"
+          className="flex flex-col font-normal text-lg mb-4"
         >
+          E-mail/username
+          <Input.Root>
+            <Input.Control
+              id="user"
+              placeholder="Seu e-mail ou usuário..."
+              required
+            />
+          </Input.Root>
+        </label>
+
+        <label
+          htmlFor="password"
+          className="flex flex-col font-normal text-lg mb-4"
+        >
+          Senha
+          <Input.Root>
+            <Input.Control
+              id="password"
+              type="password"
+              placeholder="Sua senha..."
+              required
+            />
+          </Input.Root>
+        </label>
+
+        <span className="self-end" >
           <Link to="/recover-password">
             <u>Esqueci minha senha</u>
           </Link>
         </span>
+
         <button
           type="submit"
           className="bg-primary p-4 mt-9 rounded-2xl text-lg font-semibold hover:bg-secondary transition"
@@ -71,9 +84,8 @@ export default function Login() {
             onError={errorLogin}
           />
         </div>
-        <span
-          className="self-center my-5"
-        >
+
+        <span className="self-center my-5" >
           <Link to="/sign-up">Ainda não tem uma conta?</Link>
         </span>
       </form>
