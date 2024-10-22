@@ -1,10 +1,11 @@
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import type { LinksFunction } from "@remix-run/node";
 import {
   Links,
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration,
+  ScrollRestoration
 } from "@remix-run/react";
 
 import "./tailwind.css";
@@ -41,5 +42,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <GoogleOAuthProvider clientId="clientId">
+      <Outlet />
+    </GoogleOAuthProvider>
+  );
 }
